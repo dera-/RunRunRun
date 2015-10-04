@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
+  h1 ログインテスト
   p Welcome to #{title}
+  - var session_element_nums = Object.keys(session).length;
+  if session_element_nums > 0
+    - var img_src = session.user.photos[0].value;
+    - var user_name = session.user.displayName;
+    div
+      img(src="#{img_src}")
+    div #{user_name}
+  else
+    a(
+      href="/oauth"
+      class="btn-large waves-effect waves-light") Twitterでログイン
